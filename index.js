@@ -40,7 +40,7 @@ const command = args.shift().toLowerCase();
     .setFooter("Editor, foto fachera porfa · u <",client.user.avatarURL())
     .addField("Banear", "Banea a un usuario (k!ban {usuario} )")
     .addField("Expulsar", "Expulsa a un usuario (k!kick)",  true)
-    .addField("Avatar", "Mira con mayor detalle el avatar de alguien (k!avatar / p!avatar [usuario])")
+    .addField("Avatar", "Mira con mayor detalle el avatar de alguien (k!avatar / k!avatar [usuario])")
     .addField("España", "Viva españa (k!spain)", true)
     .addField("Donald Trump", "Donald Trump escribe en su Twitter lo-que-quieras (k!trump [texto])")
   message.reply({ embed: embedDatos });
