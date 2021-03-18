@@ -24,10 +24,7 @@ monitor.on('down', (res) => console.log(`${res.website} se ha caído - ${res.sta
 monitor.on('stop', (website) => console.log(`${website} se ha parado.`) );
 monitor.on('error', (error) => console.log(error));
 
-  var memes = ["https://bit.ly/3bAtMaN","https://bit.ly/3t3Y1ww", "https://bit.ly/3by3VQu", "https://bit.ly/3l1zm90", "https://bit.ly/3l0Ypcm", "https://bit.ly/38tdC0N", "https://bit.ly/3rzCvPL", "https://bit.ly/2PSZVSr"]
-  var random = Math.floor(Math.random()*(memes.length))
 
- 
 
 
 client.on('ready', () => {
@@ -71,21 +68,6 @@ const command = args.shift().toLowerCase();
   message.reply({ embed: embedDatos });
   }
 
-  if(command === 'countdown'){
-     if(!args[0]) return message.reply({embed : emptyinfo});
-      if(isNaN(args[0])) return message.reply({embed : emptyinfo}) 
-
-       let time = parseInt(args[0]) 
-       if(time > 7200)
-       { return  message.channel.send(new Discord.MessageEmbed() .setColor(`#ff0000`)
-        .setDescription(`**No puedo contar mas de 2 horas _(7200 segundos)_**`))
-         };
-         let msg = await message.channel.send(String(time))
-         if(time < 20) { 
-  let count1 = setInterval(async () => {
-   await msg.edit(time <= 0 ? "La cuenta regresiva ha terminado" : String(time))
-   time <= 0 ? clearInterval(count1) : time -= 3
-
 if(command === 'avatar'){
 
 if(message.author.bot)return message.reply('No acepto mensajes de bots');
@@ -123,6 +105,7 @@ message.reply(embed);
     
   }
 
+  
    if(command === 'kick'){
     
         let user = message.mentions.users.first();
@@ -144,25 +127,22 @@ message.reply(embed);
     if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('¡No puedes usar este comando!')
 
     let del = args[0];
-    if(isNaN(del)) return message.reply({embed: emptyinfo})
 
     if(!del) return message.reply({embed: emptyinfo})
-
-    let delsucc = new Discord.MessageEmbed()
-    .setColor(0x00AE86)
-    .setDescription(`¡Se ha(n) borrado ${del} mensaje(s)`)
-
 
   
 
     message.delete();
     message.channel.bulkDelete(del);
 
+    if(del = 1) return message.reply('Se ha borrado un mensaje');
 
     
-    message.reply({embed : delsucc});
+    message.reply(`Se han borrado ${del} mensajes.`);
     
+    delay(2000);
 
+    message
   
   }
 
@@ -196,6 +176,16 @@ if(command === 'trump'){
 }
 
 
+});
+
+client.on('message', message =>{
+  var memes = ["https://bit.ly/3bAtMaN","https://bit.ly/3t3Y1ww", "https://bit.ly/3by3VQu", "https://bit.ly/3l1zm90", "https://bit.ly/38tdC0N", "https://bit.ly/3rzCvPL", "https://bit.ly/2PSZVSr", "https://bit.ly/38NKn94", "https://bit.ly/30SOmNe", "https://bit.ly/3lowOC9"]
+  var random = Math.floor(Math.random()*(memes.length))
+
+ if(message.content.startsWith("k!memes")){
+   message.channel.send(memes[random]);
+ }
+ 
 });
 
 
