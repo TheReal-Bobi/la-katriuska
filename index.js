@@ -46,6 +46,11 @@ let unknowncommand = new Discord.MessageEmbed()
     .setColor(0x00AE86)
     .setDescription("¡Este comando no existe!")
     
+let voteembed = new Discord.MessageEmbed()
+  .setTitle("Para votarme, haz click aquí")
+  .setColor(0x0AE86)
+  .setURL("https://bit.ly/3cT840P")
+  .setDescription("Si no funciona el link del título, pon esta dirección en tu barra de busqueda: https://bit.ly/3cT840P")
 
 
 client.on('message', async (message) => {
@@ -65,6 +70,9 @@ const command = args.shift().toLowerCase();
     .addField("Avatar", "Mira con mayor detalle el avatar de alguien (k!avatar / k!avatar [usuario])")
     .addField("España", "Viva españa (k!spain)", true)
     .addField("Donald Trump", "Donald Trump escribe en su Twitter lo-que-quieras (k!trump [texto])")
+    .addField("Memes", "Te pongo unos memes (k!memes)")
+    .addField("Perros", "Te pongo la foto de un perro (k!dogs)")
+    .addField("Votar", "¡Ah, que quieres votarme en top.gg! (k!vote)")
   message.reply({ embed: embedDatos });
   }
 
@@ -89,6 +97,10 @@ const embed = new Discord.MessageEmbed()
 message.reply(embed);
 
 }
+}
+
+if(command === 'vote'){
+ message.channel.send({embed : voteembed})
 }
 
   if(command === 'ban'){
@@ -146,6 +158,8 @@ message.reply(embed);
   
   }
 
+
+
   
 
 
@@ -176,6 +190,7 @@ if(command === 'trump'){
 }
 
 
+
 });
 
 client.on('message', message =>{
@@ -186,9 +201,17 @@ client.on('message', message =>{
    message.channel.send(memes[random]);
  }
  
-});
+})
 
+client.on("message", message =>{
+  var dogs = ["https://bit.ly/38Vk8hc", "https://bit.ly/38S3tuF", "https://bit.ly/3vEZwDF", "https://bit.ly/3r6Pec1", "https://bit.ly/3vFgoKa", "https://bit.ly/3rXx79q", "https://bit.ly/317ww9D", "https://bit.ly/3qXD84S", "https://bit.ly/3vFivxC", "https://bit.ly/3bWQxWs", "https://bit.ly/2NrPBjm", "https://bit.ly/3tAOXiO", "https://bit.ly/30W3HMZ", "https://bit.ly/3eR4irJ", "https://bit.ly/30XDLAw", "https://bit.ly/30W70Ea", "https://bit.ly/3eQOiFX", "https://bit.ly/3vAVtbp", "https://bit.ly/3tB1a79", "https://bit.ly/2P883Ok"]
 
+  var random = Math.floor(Math.random()*dogs.length)
+
+  if(message.content.startsWith("k!dogs")){
+    message.channel.send(dogs[random]);
+  }
+})
 
 
 
