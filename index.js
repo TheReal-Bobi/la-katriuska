@@ -73,6 +73,7 @@ const command = args.shift().toLowerCase();
     .addField("Memes", "Te pongo unos memes (k!memes)")
     .addField("Perros", "Te pongo la foto de un perro (k!dogs)")
     .addField("Votar", "¡Ah, que quieres votarme en top.gg! (k!vote)")
+  message.channel.startTyping();
   message.reply({ embed: embedDatos });
   }
 
@@ -85,7 +86,7 @@ const embed = new Discord.MessageEmbed()
     .setImage(`${message.author.displayAvatarURL({dynamic: true, size : 1024 })}`)
     .setColor(0x66b3ff)
     .setTitle(`Este es tu avatar, ${message.author.tag}`);
-    
+message.channel.startTyping();    
 message.reply(embed);
 
 } else {
@@ -93,13 +94,14 @@ const embed = new Discord.MessageEmbed()
     .setImage(`${miembro.displayAvatarURL({dynamic: true, size : 1024 })}`)
     .setColor(0x66b3ff)
     .setTitle(`Este es el avatar de ${miembro.tag}`)    
-
+message.channel.startTyping();
 message.reply(embed);
 
 }
 }
 
 if(command === 'vote'){
+  message.channel.startTyping();
  message.channel.send({embed : voteembed})
 }
 
@@ -111,7 +113,7 @@ if(command === 'vote'){
         if (!message.guild.member(user).bannable) return message.reply('No puedo banear al usuario mencionado.');
        const db = new Database()
         
-    
+        message.channel.startTyping();
         message.guild.member(user).ban;
         message.reply(`**Se ha baneado a ${user.username}con éxito.**`);
     
@@ -125,13 +127,14 @@ if(command === 'vote'){
         if (message.mentions.users.size < 1) return message.reply({embed: emptyinfo}).catch(console.error);
         if (!message.guild.member(user).kickable) return message.reply('No puedo expulsar al usuario mencionado.');
         
-    
+        message.channel.startTyping();
         message.guild.member(user).kick;
         message.reply(`**Se ha expulsado a ${user.username}con éxito.**`);
     
   }
 
   if(command === 'spain'){
+    message.channel.startTyping();
     message.reply('https://bit.ly/3cb3U4n');
   }
 
@@ -143,7 +146,7 @@ if(command === 'vote'){
     if(!del) return message.reply({embed: emptyinfo})
 
   
-
+    message.channel.startTyping();
     message.delete();
     message.channel.bulkDelete(del);
 
@@ -154,7 +157,7 @@ if(command === 'vote'){
     
     delay(2000);
 
-    message
+    
   
   }
 
@@ -180,12 +183,13 @@ if(command === 'trump'){
         if(!mensaje) return message.channel.send(' Debes de colocar un mensaje para que trump lo diga!').then(m => m.delete({timeout: 7000}))
         let api = `https://api.no-api-key.com/api/v2/trump?message=${mensaje}`
 
-
+        message.channel.startTyping();
         const TrumpDijo = new Discord.MessageEmbed() 
         .setImage(api)
         .setColor('RANDOM')
 
         message.reply(TrumpDijo)
+        
 
 }
 
@@ -194,14 +198,16 @@ if(command === 'trump'){
 });
 
 client.on('message', message =>{
+
   var memes = ["https://bit.ly/3bAtMaN","https://bit.ly/3t3Y1ww", "https://bit.ly/3by3VQu", "https://bit.ly/3l1zm90", "https://bit.ly/38tdC0N", "https://bit.ly/3rzCvPL", "https://bit.ly/2PSZVSr", "https://bit.ly/38NKn94", "https://bit.ly/30SOmNe", "https://bit.ly/3lowOC9"]
   var random = Math.floor(Math.random()*(memes.length))
 
  if(message.content.startsWith("k!memes")){
+   message.channel.startTyping();
    message.channel.send(memes[random]);
  }
  
-})
+});
 
 client.on("message", message =>{
   var dogs = ["https://bit.ly/38Vk8hc", "https://bit.ly/38S3tuF", "https://bit.ly/3vEZwDF", "https://bit.ly/3r6Pec1", "https://bit.ly/3vFgoKa", "https://bit.ly/3rXx79q", "https://bit.ly/317ww9D", "https://bit.ly/3qXD84S", "https://bit.ly/3vFivxC", "https://bit.ly/3bWQxWs", "https://bit.ly/2NrPBjm", "https://bit.ly/3tAOXiO", "https://bit.ly/30W3HMZ", "https://bit.ly/3eR4irJ", "https://bit.ly/30XDLAw", "https://bit.ly/30W70Ea", "https://bit.ly/3eQOiFX", "https://bit.ly/3vAVtbp", "https://bit.ly/3tB1a79", "https://bit.ly/2P883Ok"]
@@ -209,11 +215,10 @@ client.on("message", message =>{
   var random = Math.floor(Math.random()*dogs.length)
 
   if(message.content.startsWith("k!dogs")){
+    message.channel.startTyping();
     message.channel.send(dogs[random]);
   }
-})
-
-
+});
 
 
 client.login(config.token)
